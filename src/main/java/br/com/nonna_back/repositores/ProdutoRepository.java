@@ -4,8 +4,7 @@ import br.com.nonna_back.models.Produto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Repository
@@ -27,6 +26,12 @@ public class ProdutoRepository {
                         resultado.getString("categoria")
                 )
         );
+    }
 
+    public void criarProduto(Produto produto) {
+        jdbcTemplate.update(
+                "INSERT INTO produto (nome, descricao, preco, categoria_ VALUES (?, ?, ?, ?)",
+                produto.getNome(), produto.getDescricao(), produto.getPreco(), produto.getCategoria()
+        );
     }
 }
