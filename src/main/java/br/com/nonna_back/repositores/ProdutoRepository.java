@@ -1,6 +1,7 @@
 package br.com.nonna_back.repositores;
 
 import br.com.nonna_back.models.Produto;
+import org.jspecify.annotations.Nullable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,7 @@ public class ProdutoRepository {
     }
 
     public List<Produto> getTodosProdutos() {
+        @Nullable Object id;
         return jdbcTemplate.query(
                 "SELECT id, nome, descricao, preco, categoria FROM produto",
                 (resultado, numLinha) -> new Produto(
